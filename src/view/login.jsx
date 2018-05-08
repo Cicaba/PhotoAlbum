@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../stylus/login';
+import axios from "axios";
 import { Grid, Col, Field, Button, Modal } from 'amazeui-touch';
 import img from '../images/timg.jpg';
 
@@ -77,6 +78,9 @@ export default class Login extends Component {
     } else {
       this.setState({
         loading: true
+      });
+      axios.get('/login').then(res => {
+        console.log(res);
       });
     }
     console.log(this.state);
