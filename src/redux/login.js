@@ -3,12 +3,14 @@ import { connect } from 'react-redux';
 import login from '../view/login';
 
 const mapStateToProps = state => {
-  return { token: state.token };
+  return { state: state };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    changeToken: (Obj) => dispatch(Obj)
+    changeToken: (Obj) => dispatch(Obj),
+    changeUserName: (Obj) => dispatch(Obj),
+    changeId: (Obj) => dispatch(Obj)
   };
 };
 

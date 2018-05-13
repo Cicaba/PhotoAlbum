@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Index from '../view/index';
 
 const mapStateToProps = state => {
-  return { height: state };
+  return { state: state };
 };
 
 const mapDispatchToProps = dispatch => {

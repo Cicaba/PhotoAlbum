@@ -25,6 +25,10 @@ axios.interceptors.response.use(
       case 401:
         location.hash = "/login";
         store.dispatch({ type: "setToken", data: null });
+        store.dispatch({ type: "setUserName", data: null });
+        store.dispatch({ type: "setId", data: null });
+        localStorage.setItem('userName', 'null');
+        localStorage.setItem('userId', 'null');
         localStorage.setItem("token", 'null');
       }
     }

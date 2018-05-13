@@ -1,13 +1,19 @@
 import { createStore } from 'redux';
 let store = createStore((state, action) => {
-  state = {
-    token: null
-  };
+  state || (state = {
+    token: null,
+    userName: null,
+    id: null
+  });
   switch (action.type) {
-  case 'changeToken':
-    return { state: action.data };
+  case 'setToken':
+    return Object.assign(state, { token: action.data });
+  case 'setUserName':
+    return Object.assign(state, { userName: action.data });
+  case 'setId':
+    return Object.assign(state, { id: action.data });
   default:
     return state;
   }
-}, ['Use Redux']);
+});
 export default store;
