@@ -1,16 +1,13 @@
-import {createStore} from 'redux';
+import { createStore } from 'redux';
 let store = createStore((state, action) => {
   state = {
-    height: '555px'
+    token: null
   };
   switch (action.type) {
-  case 'setHeight':
-    return state.height = [action.data];
+  case 'changeToken':
+    return { state: action.data };
   default:
     return state;
   }
 }, ['Use Redux']);
-
-store.dispatch({type: 'setHeight', data: '99px'});
-console.log(store.getState());
 export default store;

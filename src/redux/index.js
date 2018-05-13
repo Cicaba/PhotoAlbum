@@ -1,9 +1,9 @@
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 // import Router from '../router/router';
 import Index from '../view/index';
 
 const mapStateToProps = state => {
-  return {height: state};
+  return { height: state };
 };
 
 const mapDispatchToProps = dispatch => {

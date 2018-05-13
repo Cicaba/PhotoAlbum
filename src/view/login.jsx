@@ -12,8 +12,8 @@ export default class Login extends Component {
       loading: false,
       message: "用户名密码必填!",
       useMessage: {
-        "useName": null,
-        "usePassword": null
+        "userName": null,
+        "password": null
       }
     };
   }
@@ -27,8 +27,8 @@ export default class Login extends Component {
         </div>
         <Grid>
           <Col cols={5} className="form-set">
-            <Field placeholder="用户名或Email" onChange={(e) => this.useName(e)} />
-            <Field placeholder="密码" type="password" onChange={(e) => this.usePassword(e)} />
+            <Field placeholder="用户名或Email" onChange={(e) => this.userName(e)} />
+            <Field placeholder="密码" type="password" onChange={(e) => this.password(e)} />
             <Button amStyle="primary" block onClick={() => this.submit()}>登&emsp;陆</Button>
             <Col className="register">
               <Button hollow amStyle="success" onClick={() => this.exploit()} amSize="xs">忘记密码</Button>
@@ -51,26 +51,26 @@ export default class Login extends Component {
     );
   }
   //获取用户名
-  useName(e) {
+  userName(e) {
     this.setState({
       useMessage: {
-        useName: e.target.value,
-        usePassword: this.state.useMessage.usePassword
+        userName: e.target.value,
+        password: this.state.useMessage.password
       }
     });
   }
   //用户密码
-  usePassword(e) {
+  password(e) {
     this.setState({
       useMessage: {
-        useName: this.state.useMessage.useName,
-        usePassword: e.target.value
+        userName: this.state.useMessage.userName,
+        password: e.target.value
       }
     });
   }
   //登陆
   submit() {
-    if (!this.state.useMessage.useName || !this.state.useMessage.usePassword) {
+    if (!this.state.useMessage.userName || !this.state.useMessage.password) {
       this.setState({
         message: "用户名密码必填!",
         isOpen: true
@@ -79,8 +79,20 @@ export default class Login extends Component {
       this.setState({
         loading: true
       });
-      axios.get('/login').then(res => {
-        console.log(res);
+      axios.post('/login', this.state.useMessage).then(res => {
+        this.props.changeToken({ type: "changeToken", data: res.data.token });
+        localStorage.setItem('token', String(res.data.token));
+        setTimeout(() => {
+          axios.post('/index').then(res => {
+            this.props.history.push("/");
+            console.log(res);
+          }).catch(error => {
+            console.log(error);
+          });
+        }, 2000);
+        this.setState({
+          loading: false
+        });
       });
     }
     console.log(this.state);

@@ -1,9 +1,9 @@
 import React from "react";
-import {HashRouter as Router, Route} from "react-router-dom";
-import {Provider} from 'react-redux';
+import { HashRouter as Router, Route } from "react-router-dom";
 import store from '../redux/store';
-import Index from '../redux/connect';
-import Login from '../view/login';
+import { Provider } from 'react-redux';
+import Index from '../redux/index';
+import Login from '../redux/login';
 
 //使用默认的确认函数
 const getConfirmation = (message, callback) => {
@@ -11,11 +11,25 @@ const getConfirmation = (message, callback) => {
   const allowTransition = window.confirm(message);
   callback(allowTransition);
 };
-export default(
+let renderIndex = () => {
+  console.log(store.getState().token);
+  if (store.getState().token) {
+    return <Index />;
+  } else {
+    return <Login />;
+  }
+};
+// function requireAuthentication(Component) {
+//   console.log(Component.Connect);
+//   return Component;
+// }
+export default (
   <Router getUserConfirmation={getConfirmation}>
     <Provider store={store}>
       <div>
         <Route exact path='/' component={Index}></Route>
+        {/* <Route exact path='/' component={requireAuthentication(Index)}></Route> */}
+        {/* <Route exact path='/' render={renderIndex}></Route> */}
         <Route exact path='/login' component={Login}></Route>
       </div>
     </Provider>
