@@ -84,15 +84,14 @@ export default class Login extends Component {
         this.props.changeToken({ type: "setToken", data: res.data.token });
         this.props.changeUserName({ type: "setUserName", data: res.data.name });
         this.props.changeId({ type: "setId", data: res.data.id });
-        localStorage.setItem('token', String(res.data.token));
-        localStorage.setItem('userName', String(res.data.name));
-        localStorage.setItem('userId', String(res.data.id));
+        this.props.changeClassify({ type: "setClassify", data: res.data.classify });
+        // localStorage.setItem('token', String(res.data.token));
+        // localStorage.setItem('userName', String(res.data.name));
+        // localStorage.setItem('userId', String(res.data.id));
         setTimeout(() => {
-          axios.post('/index').then(res => {
+          axios.post('/index').then(() => {
             this.props.history.push("/");
-            console.log(res);
-          }).catch(error => {
-            console.log(error);
+          }).catch(() => {
           });
         }, 2000);
         this.setState({
@@ -100,7 +99,6 @@ export default class Login extends Component {
         });
       });
     }
-    console.log(this.state);
   }
   //关闭窗口
   clear() {
