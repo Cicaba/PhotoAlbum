@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import Index from '../view/index/index';
+import Menu from '../view/menu/index';
 
 const mapStateToProps = state => {
   return { state: state };
@@ -7,10 +7,10 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    // changeSelected: (Obj) => dispatch(Obj)
+    changeSelected: (Obj) => dispatch(Obj)
   };
 };
 
-const VisibleTodoList = connect(mapStateToProps, mapDispatchToProps)(Index);
+const VisibleTodoList = connect(mapStateToProps, mapDispatchToProps)(Menu);
 
 export default VisibleTodoList;

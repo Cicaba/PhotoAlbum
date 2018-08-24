@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 // import Router from '../router/router';
-import login from '../view/login';
+import login from '../view/login/index';
 
 const mapStateToProps = state => {
   return { state: state };
@@ -15,7 +15,9 @@ const mapDispatchToProps = dispatch => {
     //修改用户id
     changeId: (Obj) => dispatch(Obj),
     //分类
-    changeClassify: (Obj) => dispatch(Obj)
+    changeClassify: (Obj) => dispatch(Obj),
+    //控制菜单位置
+    changeSelected: (Obj) => dispatch(Obj)
   };
 };
 

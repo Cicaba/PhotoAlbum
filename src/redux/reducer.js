@@ -2,6 +2,7 @@ let stateData = {
   token: null,
   userName: null,
   id: null,
+  menuSelected: 0,
   classify: []
 };
 export default (state = stateData, action) => {
@@ -14,6 +15,8 @@ export default (state = stateData, action) => {
     return { ...state, id: action.data };
   case 'setClassify':
     return { ...state, classify: action.data };
+  case 'setSelected':
+    return { ...state, menuSelected: action.data };
   default:
     return state;
   }

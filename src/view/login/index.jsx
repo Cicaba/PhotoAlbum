@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import axios from "axios";
-import '../stylus/login';
+import './index.styl';
 import { Grid, Col, Field, Button, Modal } from 'amazeui-touch';
-import store from "../redux/store";
-import img from '../images/timg.jpg';
+import img from '../../images/timg.jpg';
 
 export default class Login extends Component {
   constructor() {
@@ -85,12 +84,10 @@ export default class Login extends Component {
         this.props.changeUserName({ type: "setUserName", data: res.data.name });
         this.props.changeId({ type: "setId", data: res.data.id });
         this.props.changeClassify({ type: "setClassify", data: res.data.classify });
-        // localStorage.setItem('token', String(res.data.token));
-        // localStorage.setItem('userName', String(res.data.name));
-        // localStorage.setItem('userId', String(res.data.id));
+        this.props.changeSelected({ type: "setSelected", data: "0" });
         setTimeout(() => {
           axios.post('/index').then(() => {
-            this.props.history.push("/");
+            this.props.history.push("/index");
           }).catch(() => {
           });
         }, 2000);

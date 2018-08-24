@@ -119,6 +119,10 @@
     "/index": {
       "target": "http://192.168.7.129:3000",
       "changeOrigin": true
+    },
+    "/index/classify": {
+      "target": "http://192.168.7.129:3000",
+      "changeOrigin": true
     }
   }
 }

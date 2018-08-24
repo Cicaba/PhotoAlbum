@@ -1,0 +1,35 @@
+.index
+  height: 100%
+  position: relative
+  img
+    cursor: pointer
+  .indexContent,.SelectImg
+    height :calc(100% - 3.0625rem)
+    overflow-y: auto
+  .loader 
+    position: absolute
+    top: 50%
+    left: 0
+    right: 0
+  .classify
+    .card-body
+      display: flex
+      flex-direction: row
+      flex-wrap: wrap
+      div
+        width: 50%
+        height: 0px
+        padding-bottom: 28%
+        overflow: hidden
+        border: .1rem solid  #fff
+        position: relative
+        .radio
+          position: absolute
+          top: 0
+          right: 0
+  .TabBar
+    width: 100%
+    position: absolute
+    bottom: 0
+    .tabbar>.active, .tabbar>.active a
+      color: #0e90d2
